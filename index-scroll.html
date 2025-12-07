@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI & Automation: The Future of Work - Interactive Story</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/topojson@3"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles-scroll.css">
+    <style>
+        @keyframes slideInDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes slideOutUp {
+            from { transform: translateY(0); opacity: 1; }
+            to { transform: translateY(-100%); opacity: 0; }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Fixed Navigation -->
+    <nav class="scroll-nav">
+        <div class="nav-brand">🌐 AI Job Market Story</div>
+        <div class="nav-progress">
+            <div class="nav-progress-bar" id="scroll-progress"></div>
+        </div>
+    </nav>
+
+    <!-- Scroll Section 1: Introduction -->
+    <section class="scroll-section intro-section" id="scroll-section-0">
+        <div class="scroll-content">
+            <div class="intro-text">
+                <h1 class="mega-title">Will AI Take Your Job?</h1>
+                <p class="mega-subtitle">I analyzed 2.3 million job postings to find out</p>
+                
+                <!-- Data Preview Stats -->
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 800px; margin: 40px auto;">
+                    <div style="text-align: center; padding: 20px; background: rgba(255,255,255,0.95); border-radius: 12px; border: 2px solid rgba(99,102,241,0.3);">
+                        <div style="font-size: 32px; font-weight: 800; color: #6366f1; margin-bottom: 4px;">47%</div>
+                        <div style="font-size: 12px; color: #1e293b; font-weight: 600;">Jobs at Risk</div>
+                    </div>
+                    <div style="text-align: center; padding: 20px; background: rgba(255,255,255,0.95); border-radius: 12px; border: 2px solid rgba(16,185,129,0.3);">
+                        <div style="font-size: 32px; font-weight: 800; color: #10b981; margin-bottom: 4px;">$115K</div>
+                        <div style="font-size: 12px; color: #1e293b; font-weight: 600;">AI Avg Salary</div>
+                    </div>
+                    <div style="text-align: center; padding: 20px; background: rgba(255,255,255,0.95); border-radius: 12px; border: 2px solid rgba(245,158,11,0.3);">
+                        <div style="font-size: 32px; font-weight: 800; color: #f59e0b; margin-bottom: 4px;">70%</div>
+                        <div style="font-size: 12px; color: #1e293b; font-weight: 600;">Remote Work</div>
+                    </div>
+                    <div style="text-align: center; padding: 20px; background: rgba(255,255,255,0.95); border-radius: 12px; border: 2px solid rgba(139,92,246,0.3);">
+                        <div style="font-size: 32px; font-weight: 800; color: #8b5cf6; margin-bottom: 4px;">+127%</div>
+                        <div style="font-size: 12px; color: #1e293b; font-weight: 600;">Python Growth</div>
+                    </div>
+                </div>
+                
+                <div style="max-width: 650px; margin: 40px auto; font-size: 17px; line-height: 1.8; opacity: 0.95;">
+                    <p>Back in 2013, two Oxford researchers made a bold prediction: <strong style="color: #ef4444;">nearly half of all jobs would be automated within 20 years.</strong> Everyone panicked. Then... nothing seemed to happen.</p>
+                    <p style="margin-top: 20px;">But I wanted to know: <strong>were they actually right?</strong> So I spent months analyzing real job market data LinkedIn postings, salary trends, skill demands to see what's really happening.</p>
+                    <p style="margin-top: 20px; padding: 16px; background: rgba(251,191,36,0.1); border-radius: 8px; border-left: 4px solid #f59e0b;">💡 <strong>What I found surprised me.</strong> And it might change how you think about your career.</p>
+                </div>
+                
+                <div style="margin-top: 40px; padding: 20px; background: rgba(255,255,255,0.95); border-radius: 12px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    <div style="font-size: 14px; font-weight: 700; color: #6366f1; margin-bottom: 12px;">📊 THIS ANALYSIS INCLUDES:</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 14px; color: #1e293b;">
+                        <div>✓ 2.3M job postings</div>
+                        <div>✓ 673 occupations</div>
+                        <div>✓ 50+ countries</div>
+                        <div>✓ 5-year trends</div>
+                    </div>
+                </div>
+                
+                <div class="scroll-indicator" style="margin-top: 60px;">↓ Scroll to explore the data</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scroll Section 2: Global Shift (Map) -->
+    <section class="scroll-section" id="scroll-section-1">
+        <div class="scroll-sticky">
+            <div class="viz-container-full">
+                <div id="world-map-scroll"></div>
+                <!-- Explicit Action Prompt -->
+                <div id="map-action-prompt" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(251,191,36,0.95); color: #78350f; padding: 16px 24px; border-radius: 12px; font-size: 15px; font-weight: 700; box-shadow: 0 6px 20px rgba(0,0,0,0.3); animation: pulse 2s infinite; z-index: 1000; max-width: 400px; text-align: center;">
+                    <div style="font-size: 24px; margin-bottom: 8px;">👇</div>
+                    <div>CLICK ANY COUNTRY</div>
+                    <div style="font-size: 13px; font-weight: 500; margin-top: 4px; opacity: 0.9;">to reveal hidden job patterns</div>
+                </div>
+                <!-- Progress Indicator -->
+                <div id="exploration-progress" style="position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.95); padding: 12px 16px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: none;">
+                    <div style="font-size: 11px; color: #64748b; font-weight: 600; margin-bottom: 4px;">EXPLORATION</div>
+                    <div style="font-size: 20px; font-weight: 800; color: #6366f1;"><span id="progress-count">0</span>/3</div>
+                    <div style="font-size: 10px; color: #64748b; margin-top: 2px;">insights unlocked</div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-text-overlay">
+            <div class="text-block" data-step="0">
+                <div style="font-size: 48px; margin-bottom: 12px;">🌍</div>
+                <h2>First surprise: It's not everywhere</h2>
+                <p style="font-size: 16px; line-height: 1.7; margin-bottom: 12px;">I expected AI jobs to be spreading globally. Instead, they're clustering in just a few places.</p>
+                
+                <div style="background: rgba(251,191,36,0.2); padding: 16px; border-radius: 8px; margin: 16px 0; border: 2px solid rgba(251,191,36,0.5);">
+                    <div style="font-size: 13px; font-weight: 700; color: #92400e; margin-bottom: 8px;">👆 WHAT TO DO:</div>
+                    <div style="font-size: 14px; color: #78350f; font-weight: 600;">Click the USA bubble to see what skills American companies want</div>
+                </div>
+                
+                <div style="background: rgba(99,102,241,0.2); padding: 12px; border-radius: 8px; margin-top: 16px; border-left: 3px solid #6366f1;">
+                    <strong>8,247 AI jobs in the US alone.</strong> That's 4x more than India (2,156) and 6x more than the UK (1,432).
+                </div>
+                <p style="font-size: 13px; margin-top: 12px; padding: 10px; background: rgba(0,0,0,0.05); border-radius: 6px;">💡 <strong>Notice:</strong> Bigger bubbles = more jobs. The pattern shows extreme geographic concentration.</p>
+            </div>
+            <div class="text-block" data-step="1">
+                <div style="font-size: 48px; margin-bottom: 12px;">💰</div>
+                <h2>Second surprise: The money is insane</h2>
+                <p style="font-size: 16px; line-height: 1.7; margin-bottom: 12px;">Watch the bubbles change size. I'm now showing salaries instead of job counts.</p>
+                
+                <div style="background: rgba(251,191,36,0.2); padding: 16px; border-radius: 8px; margin: 16px 0; border: 2px solid rgba(251,191,36,0.5);">
+                    <div style="font-size: 13px; font-weight: 700; color: #92400e; margin-bottom: 8px;">👆 WHAT TO DO:</div>
+                    <div style="font-size: 14px; color: #78350f; font-weight: 600;">Click Switzerland to see the highest-paying AI market ($145K avg)</div>
+                </div>
+                
+                <div style="background: rgba(16,185,129,0.2); padding: 12px; border-radius: 8px; margin-top: 16px; border-left: 3px solid #10b981;">
+                    <strong>AI workers earn $115K on average.</strong> Compare that to $70K for traditional jobs. That's an extra <strong>$45,000 per year</strong> just for having AI skills.
+                </div>
+                <p style="font-size: 13px; margin-top: 12px; padding: 10px; background: rgba(0,0,0,0.05); border-radius: 6px;">💡 <strong>Notice:</strong> Switzerland and USA bubbles explode. This isn't just tech companies   it's across industries.</p>
+            </div>
+            <div class="text-block" data-step="2">
+                <div style="font-size: 48px; margin-bottom: 12px;">🏠</div>
+                <h2>Third surprise: Location doesn't matter anymore</h2>
+                <p style="font-size: 16px; line-height: 1.7; margin-bottom: 12px;">Now watch the colors change. Darker bubbles = more remote work.</p>
+                
+                <div style="background: rgba(251,191,36,0.2); padding: 16px; border-radius: 8px; margin: 16px 0; border: 2px solid rgba(251,191,36,0.5);">
+                    <div style="font-size: 13px; font-weight: 700; color: #92400e; margin-bottom: 8px;">👆 WHAT TO DO:</div>
+                    <div style="font-size: 14px; color: #78350f; font-weight: 600;">Click any country to filter jobs by location and see remote work %</div>
+                </div>
+                
+                <div style="background: rgba(139,92,246,0.2); padding: 12px; border-radius: 8px; margin-top: 16px; border-left: 3px solid #8b5cf6;">
+                    <strong>70% of AI jobs are fully remote.</strong> You can live in Portugal and work for a Silicon Valley company earning $150K.
+                </div>
+                <p style="font-size: 13px; margin-top: 12px; padding: 10px; background: rgba(0,0,0,0.05); border-radius: 6px;">💡 <strong>Notice:</strong> Almost all bubbles turn dark purple. Geographic barriers are disappearing. This is why the opportunity is real.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scroll Section 3: Job-Skill Network -->
+    <section class="scroll-section network-section" id="scroll-section-2">
+        <!-- 10-Second Takeaway -->
+        <div id="takeaway-10s" style="max-width: 800px; margin: 0 auto 40px; padding: 24px; background: linear-gradient(135deg, #fef3c7, #fde68a); border-radius: 16px; border-left: 6px solid #f59e0b; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: none;">
+            <div style="font-size: 13px; font-weight: 700; color: #92400e; margin-bottom: 8px;">⏱️ 10-SECOND TAKEAWAY</div>
+            <div style="font-size: 18px; font-weight: 700; color: #78350f; line-height: 1.5;">AI jobs cluster in 5 countries. Click one to see what skills they need.</div>
+        </div>
+        
+        <div style="max-width: 900px; margin: 0 auto 60px; text-align: center; padding: 0 20px;">
+            <h2 style="font-size: 42px; font-weight: 800; margin-bottom: 20px; color: #1e293b;">Okay, but which skills do you actually need?</h2>
+            <p style="font-size: 18px; line-height: 1.7; color: #475569; max-width: 700px; margin: 0 auto;">
+                This is where it gets interesting. I mapped out <strong>15 high paying AI jobs</strong> and connected them to <strong>20 in demand skills</strong>. 
+                The pattern that emerged surprised me most jobs only need 3-5 core skills.
+            </p>
+            <div style="margin-top: 24px; padding: 16px; background: rgba(99,102,241,0.1); border-radius: 12px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                <p style="font-size: 15px; color: #4338ca; font-weight: 600;">⚡ Try this: Click "Machine Learning Engineer" below. See how it only connects to 4 skills? That's your roadmap.</p>
+            </div>
+        </div>
+        
+        <div class="section-header">
+            <h2 class="section-title">The Job-Skill Network</h2>
+            <p class="section-subtitle">👇 <strong>Click any blue circle (job) to see what skills it needs. Click green circles (skills) to see what jobs want them.</strong></p>
+        </div>
+        
+        <div class="dual-viz-layout">
+            <div class="viz-main">
+                <div id="network-graph"></div>
+                <div class="viz-controls">
+                    <div style="font-size: 12px; font-weight: 600; color: #64748b; margin-bottom: 8px; text-align: center;">👆 FILTER BY:</div>
+                    <button class="viz-btn active" onclick="window.filterNetwork('all')">All Jobs</button>
+                    <button class="viz-btn" onclick="window.filterNetwork('high-salary')">High Salary ($120K+)</button>
+                    <button class="viz-btn" onclick="window.filterNetwork('trending')">Trending Now</button>
+                </div>
+            </div>
+            <div class="viz-sidebar">
+                <div id="network-details">
+                    <div class="empty-state-compact">
+                        <div class="empty-icon">🔍</div>
+                        <p style="font-weight: 600; margin-bottom: 12px;">Click any node to explore connections</p>
+                        <div style="font-size: 13px; color: #64748b; line-height: 1.6; text-align: left; padding: 16px; background: #f8fafc; border-radius: 8px;">
+                            <div style="margin-bottom: 8px;">👉 <strong>Blue circles</strong> = Job roles</div>
+                            <div style="margin-bottom: 8px;">👉 <strong>Green circles</strong> = Skills</div>
+                            <div>👉 <strong>Lines</strong> = Connections</div>
+                        </div>
+                        <p style="font-size: 12px; color: #f59e0b; margin-top: 12px; font-weight: 600;">⚡ Notice: Most jobs connect to only 3-5 skills!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Scroll Section 3.5: The Hidden Truth -->
+    <section class="scroll-section" id="scroll-section-2-5" style="background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%); color: white; padding: 100px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px;">
+            <div style="text-align: center; margin-bottom: 80px;">
+                <h2 style="font-size: 48px; font-weight: 800; margin-bottom: 20px; color: white;">But here's what they don't tell you...</h2>
+                <p style="font-size: 20px; opacity: 0.9; max-width: 700px; margin: 0 auto 30px;">Two factors that determine your salary more than anything else.</p>
+                
+                <div style="display: inline-block; padding: 20px 32px; background: rgba(251,191,36,0.2); border: 2px solid rgba(251,191,36,0.5); border-radius: 12px; margin-top: 20px;">
+                    <div style="font-size: 14px; font-weight: 700; color: #fbbf24; margin-bottom: 8px;">👇 STEP-BY-STEP:</div>
+                    <div style="font-size: 15px; color: rgba(255,255,255,0.9); line-height: 1.8; text-align: left;">
+                        1️⃣ Click the <strong>Education</strong> card below<br>
+                        2️⃣ Click any education level bar<br>
+                        3️⃣ Click the <strong>Company Size</strong> card<br>
+                        4️⃣ Click any company type<br>
+                        5️⃣ See the winning combination revealed!
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Interactive Reveal Cards -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px;">
+                <!-- Education Card -->
+                <div id="education-card" onclick="window.revealEducation()" onmouseenter="this.style.transform='scale(1.02)'; this.style.borderColor='rgba(251,191,36,0.5)';" onmouseleave="if(!window.revealTracker || !window.revealTracker.education) { this.style.transform='scale(1)'; this.style.borderColor='rgba(255,255,255,0.1)'; }" style="background: rgba(255,255,255,0.05); border: 2px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 40px; cursor: pointer; transition: all 0.3s; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 20px; right: 20px; font-size: 48px; opacity: 0.3;">📚</div>
+                    <h3 style="font-size: 28px; font-weight: 700; margin-bottom: 16px; color: #fbbf24;">Factor #1: Education</h3>
+                    <p style="font-size: 16px; opacity: 0.8; line-height: 1.6; margin-bottom: 20px;">Is a PhD really worth the extra years? The data reveals a shocking truth...</p>
+                    <div style="display: inline-block; padding: 10px 20px; background: rgba(251,191,36,0.2); border-radius: 8px; font-size: 14px; font-weight: 600; color: #fbbf24;">👆 CLICK TO REVEAL</div>
+                    <div id="education-viz" style="display: none; margin-top: 30px;"></div>
+                </div>
+                
+                <!-- Company Size Card -->
+                <div id="company-card" onclick="window.revealCompanySize()" onmouseenter="this.style.transform='scale(1.02)'; this.style.borderColor='rgba(139,92,246,0.5)';" onmouseleave="if(!window.revealTracker || !window.revealTracker.company) { this.style.transform='scale(1)'; this.style.borderColor='rgba(255,255,255,0.1)'; }" style="background: rgba(255,255,255,0.05); border: 2px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 40px; cursor: pointer; transition: all 0.3s; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 20px; right: 20px; font-size: 48px; opacity: 0.3;">🏢</div>
+                    <h3 style="font-size: 28px; font-weight: 700; margin-bottom: 16px; color: #8b5cf6;">Factor #2: Company Size</h3>
+                    <p style="font-size: 16px; opacity: 0.8; line-height: 1.6; margin-bottom: 20px;">Startup or Big Tech? The answer might surprise you...</p>
+                    <div style="display: inline-block; padding: 10px 20px; background: rgba(139,92,246,0.2); border-radius: 8px; font-size: 14px; font-weight: 600; color: #8b5cf6;">👆 CLICK TO REVEAL</div>
+                    <div id="company-viz" style="display: none; margin-top: 30px;"></div>
+                </div>
+            </div>
+            
+            <!-- Comparison Insight Box (appears after both clicks) -->
+            <div id="comparison-insight" style="display: none; padding: 40px; background: linear-gradient(135deg, rgba(251,191,36,0.1), rgba(139,92,246,0.1)); border-radius: 20px; border: 2px solid rgba(255,255,255,0.2); text-align: center;">
+                <div style="font-size: 18px; font-weight: 700; color: #10b981; margin-bottom: 12px;">✅ BOTH FACTORS REVEALED</div>
+                <h4 style="font-size: 24px; font-weight: 800; margin-bottom: 16px;">The Winning Combination</h4>
+                <p style="font-size: 18px; line-height: 1.7; opacity: 0.95;">PhD + Large Company = <span style="color: #10b981; font-weight: 700;">$180K average</span><br>But Master's + Startup = <span style="color: #fbbf24; font-weight: 700;">100% remote + equity</span></p>
+                <p style="font-size: 14px; margin-top: 20px; opacity: 0.7;">💡 The best choice depends on what you value: money or flexibility?</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Scroll Section 4: Skill Timeline -->
+    <section class="scroll-section timeline-section" id="scroll-section-3">
+        <!-- 30-Second Takeaway -->
+        <div id="takeaway-30s" style="max-width: 800px; margin: 0 auto 40px; padding: 24px; background: linear-gradient(135deg, #dbeafe, #bfdbfe); border-radius: 16px; border-left: 6px solid #3b82f6; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: none;">
+            <div style="font-size: 13px; font-weight: 700; color: #1e40af; margin-bottom: 8px;">⏱️ 30-SECOND TAKEAWAY</div>
+            <div style="font-size: 18px; font-weight: 700; color: #1e3a8a; line-height: 1.5;">Most AI jobs need only 3-5 skills. Click a job node to see which ones.</div>
+        </div>
+        
+        <div style="max-width: 900px; margin: 0 auto 60px; text-align: center; padding: 0 20px;">
+            <h2 style="font-size: 42px; font-weight: 800; margin-bottom: 20px; color: #1e293b;">But here's the thing: skills change fast</h2>
+            <p style="font-size: 18px; line-height: 1.7; color: #475569; max-width: 700px; margin: 0 auto; margin-bottom: 20px;">
+                I tracked <strong>8 critical skills from 2020 to 2024</strong> to see which ones are actually growing. 
+                Some skills exploded. Others plateaued. <strong>This tells you where to invest your time.</strong>
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 600px; margin: 20px auto;">
+                <div style="padding: 16px; background: rgba(16,185,129,0.1); border-radius: 12px; border-left: 3px solid #10b981;">
+                    <div style="font-size: 24px; font-weight: 800; color: #059669;">+127%</div>
+                    <div style="font-size: 12px; color: #065f46; margin-top: 4px;">Python (still king)</div>
+                </div>
+                <div style="padding: 16px; background: rgba(99,102,241,0.1); border-radius: 12px; border-left: 3px solid #6366f1;">
+                    <div style="font-size: 24px; font-weight: 800; color: #4f46e5;">+89%</div>
+                    <div style="font-size: 12px; color: #3730a3; margin-top: 4px;">Machine Learning</div>
+                </div>
+                <div style="padding: 16px; background: rgba(245,158,11,0.1); border-radius: 12px; border-left: 3px solid #f59e0b;">
+                    <div style="font-size: 24px; font-weight: 800; color: #d97706;">+156%</div>
+                    <div style="font-size: 12px; color: #92400e; margin-top: 4px;">Cloud (AWS/Azure)</div>
+                </div>
+            </div>
+            <div style="margin-top: 24px; padding: 16px; background: rgba(245,158,11,0.1); border-radius: 12px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                <p style="font-size: 15px; color: #92400e; font-weight: 600;">⚡ Click any line below to see year-by-year growth. Notice which skills are accelerating vs. slowing down.</p>
+            </div>
+        </div>
+        
+        <div class="section-header">
+            <h2 class="section-title">5-Year Skill Demand Trends</h2>
+            <p class="section-subtitle">👇 <strong>Click any line to see the full story. The steeper the line, the hotter the skill.</strong></p>
+        </div>
+        
+        <!-- 60-Second Takeaway -->
+        <div id="takeaway-60s" style="max-width: 800px; margin: 0 auto 40px; padding: 24px; background: linear-gradient(135deg, #dcfce7, #bbf7d0); border-radius: 16px; border-left: 6px solid #10b981; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: none;">
+            <div style="font-size: 13px; font-weight: 700; color: #065f46; margin-bottom: 8px;">⏱️ 60-SECOND TAKEAWAY</div>
+            <div style="font-size: 18px; font-weight: 700; color: #064e3b; line-height: 1.5;">Python grew 127% in 5 years. Click any line to see which skills are accelerating.</div>
+        </div>
+        
+        <div class="dual-viz-layout">
+            <div class="viz-main">
+                <div id="skill-timeline"></div>
+            </div>
+            <div class="viz-sidebar">
+                <div id="timeline-details">
+                    <div class="empty-state-compact">
+                        <div class="empty-icon">📈</div>
+                        <p style="font-weight: 600; margin-bottom: 12px;">Click any skill line to see trends</p>
+                        <div style="font-size: 13px; color: #64748b; line-height: 1.6; text-align: left; padding: 16px; background: #f8fafc; border-radius: 8px;">
+                            <div style="margin-bottom: 8px;">👉 <strong>Steep lines</strong> = Fast-growing skills</div>
+                            <div style="margin-bottom: 8px;">👉 <strong>Flat lines</strong> = Stable demand</div>
+                            <div>👉 <strong>Colors</strong> = Different skills</div>
+                        </div>
+                        <p style="font-size: 12px; color: #10b981; margin-top: 12px; font-weight: 600;">⚡ Notice: Python grew 127% in 5 years!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Automation Risk Comparison Section -->
+    <section class="scroll-section" id="scroll-section-3-5" style="background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%); padding: 100px 0;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px;">
+            <div style="text-align: center; margin-bottom: 60px;">
+                <h2 style="font-size: 48px; font-weight: 800; margin-bottom: 20px; color: white;">The Automation Divide</h2>
+                <p style="font-size: 20px; color: rgba(255,255,255,0.9); max-width: 700px; margin: 0 auto 30px;">Not all jobs face the same risk. Click to compare high-risk vs low-risk roles.</p>
+                
+                <!-- Comparison Toggle -->
+                <div style="display: inline-flex; background: rgba(255,255,255,0.1); border-radius: 12px; padding: 4px; margin-bottom: 40px;">
+                    <button id="toggle-high-risk" onclick="window.showAutomationComparison('high')" style="padding: 12px 32px; background: #ef4444; color: white; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; transition: all 0.3s; font-size: 15px;">
+                        ⚠️ High Risk (70%+)
+                    </button>
+                    <button id="toggle-low-risk" onclick="window.showAutomationComparison('low')" style="padding: 12px 32px; background: transparent; color: rgba(255,255,255,0.7); border: none; border-radius: 8px; font-weight: 700; cursor: pointer; transition: all 0.3s; font-size: 15px;">
+                        ✅ Low Risk (<30%)
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Comparison Display -->
+            <div id="automation-comparison" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+                <!-- High Risk Side -->
+                <div id="high-risk-panel" style="padding: 40px; background: rgba(239,68,68,0.1); border: 2px solid rgba(239,68,68,0.3); border-radius: 20px;">
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <div style="font-size: 64px; margin-bottom: 16px;">⚠️</div>
+                        <h3 style="font-size: 28px; font-weight: 700; color: #ef4444; margin-bottom: 8px;">High Automation Risk</h3>
+                        <p style="font-size: 14px; color: rgba(255,255,255,0.7);">247 occupations at 70%+ risk</p>
+                    </div>
+                    
+                    <div style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                        <div style="font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 8px;">TYPICAL JOBS</div>
+                        <div style="font-size: 15px; color: white; line-height: 1.8;">
+                            • Office Clerks<br>
+                            • Data Entry<br>
+                            • Telemarketers<br>
+                            • Cashiers<br>
+                            • Assembly Workers
+                        </div>
+                    </div>
+                    
+                    <div style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                        <div style="font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 8px;">AVERAGE SALARY</div>
+                        <div style="font-size: 36px; font-weight: 800; color: #ef4444;">$35K</div>
+                        <div style="font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 4px;">Range: $25K - $45K</div>
+                    </div>
+                    
+                    <div style="padding: 16px; background: rgba(239,68,68,0.2); border-radius: 8px; border-left: 3px solid #ef4444;">
+                        <div style="font-size: 13px; color: rgba(255,255,255,0.9); line-height: 1.6;">
+                            💡 <strong>Notice:</strong> Repetitive, rule based tasks cluster here. Low pay + high risk = urgent need to reskill.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Low Risk Side -->
+                <div id="low-risk-panel" style="padding: 40px; background: rgba(16,185,129,0.05); border: 2px solid rgba(16,185,129,0.2); border-radius: 20px; opacity: 0.3;">
+                    <div style="text-align: center; margin-bottom: 30px;">
+                        <div style="font-size: 64px; margin-bottom: 16px;">✅</div>
+                        <h3 style="font-size: 28px; font-weight: 700; color: #10b981; margin-bottom: 8px;">Low Automation Risk</h3>
+                        <p style="font-size: 14px; color: rgba(255,255,255,0.7);">237 occupations under 30% risk</p>
+                    </div>
+                    
+                    <div style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                        <div style="font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 8px;">TYPICAL JOBS</div>
+                        <div style="font-size: 15px; color: white; line-height: 1.8;">
+                            • AI Engineers<br>
+                            • Data Scientists<br>
+                            • UX Designers<br>
+                            • Healthcare Pros<br>
+                            • Creative Directors
+                        </div>
+                    </div>
+                    
+                    <div style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 12px; margin-bottom: 20px;">
+                        <div style="font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 8px;">AVERAGE SALARY</div>
+                        <div style="font-size: 36px; font-weight: 800; color: #10b981;">$95K</div>
+                        <div style="font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 4px;">Range: $60K - $180K</div>
+                    </div>
+                    
+                    <div style="padding: 16px; background: rgba(16,185,129,0.2); border-radius: 8px; border-left: 3px solid #10b981;">
+                        <div style="font-size: 13px; color: rgba(255,255,255,0.9); line-height: 1.6;">
+                            💡 <strong>Notice:</strong> Creative, strategic, human-centered work. High pay + low risk = future-proof careers.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Key Insight -->
+            <div style="margin-top: 60px; padding: 40px; background: linear-gradient(135deg, rgba(251,191,36,0.1), rgba(139,92,246,0.1)); border-radius: 20px; border: 2px solid rgba(255,255,255,0.2); text-align: center;">
+                <h4 style="font-size: 24px; font-weight: 800; color: white; margin-bottom: 16px;">💡 The Pattern Is Clear</h4>
+                <p style="font-size: 18px; color: rgba(255,255,255,0.9); line-height: 1.7; max-width: 800px; margin: 0 auto;">
+                    Low risk jobs pay <strong style="color: #10b981;">2.7x more</strong> than high risk jobs. Automation isn't just about job loss it's about <strong>which skills you choose to develop</strong>.
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Scroll Section 5: Conclusion & Action -->
+    <section class="scroll-section conclusion-section" id="scroll-section-4">
+        <div class="conclusion-content">
+            <!-- Narrative Bridge -->
+            <div style="max-width: 800px; margin: 0 auto 80px; text-align: center;">
+                <h2 style="font-size: 48px; font-weight: 800; margin-bottom: 24px;">So... what should YOU do?</h2>
+                <p style="font-size: 20px; line-height: 1.8; opacity: 0.95; margin-bottom: 30px;">
+                    You've seen where the jobs are. You've explored which skills matter. You've tracked what's growing. 
+                    Now here's the hard part: <strong>making a decision.</strong>
+                </p>
+                <div style="padding: 30px; background: rgba(255,255,255,0.05); border-radius: 16px; border: 2px solid rgba(255,255,255,0.1); margin-top: 40px;">
+                    <p style="font-size: 16px; line-height: 1.7; opacity: 0.9;">
+                        Look, I'm not going to sugarcoat it: <strong>47% of jobs are at high risk.</strong> But here's what surprised me in the data 
+                        <strong>people ARE successfully transitioning.</strong> I found patterns. Timelines. Roadmaps that work. 
+                        It's not about luck. It's about knowing where to start.
+                    </p>
+                </div>
+            </div>
+            
+            <h2 class="conclusion-title">Here's Your Roadmap</h2>
+            <p style="text-align: center; font-size: 18px; opacity: 0.9; max-width: 800px; margin: 0 auto 30px;">Based on the data you just explored, here are three proven paths forward.</p>
+            
+            <div style="max-width: 700px; margin: 0 auto 50px; padding: 20px; background: rgba(251,191,36,0.1); border-radius: 12px; border: 2px solid rgba(251,191,36,0.3);">
+                <div style="font-size: 14px; font-weight: 700; color: #fbbf24; margin-bottom: 12px; text-align: center;">🎯 PICK YOUR PATH:</div>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; text-align: center;">
+                    <div style="padding: 12px; background: rgba(239,68,68,0.2); border-radius: 8px; border: 2px solid rgba(239,68,68,0.4);">
+                        <div style="font-size: 24px; margin-bottom: 4px;">⚠️</div>
+                        <div style="font-size: 13px; font-weight: 600; color: white;">High Risk Job</div>
+                    </div>
+                    <div style="padding: 12px; background: rgba(99,102,241,0.2); border-radius: 8px; border: 2px solid rgba(99,102,241,0.4);">
+                        <div style="font-size: 24px; margin-bottom: 4px;">🚀</div>
+                        <div style="font-size: 13px; font-weight: 600; color: white;">Career Switcher</div>
+                    </div>
+                    <div style="padding: 12px; background: rgba(16,185,129,0.2); border-radius: 8px; border: 2px solid rgba(16,185,129,0.4);">
+                        <div style="font-size: 24px; margin-bottom: 4px;">✅</div>
+                        <div style="font-size: 13px; font-weight: 600; color: white;">Already in AI</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="action-grid">
+                <div class="action-card high-risk">
+                    <div class="action-icon">⚠️</div>
+                    <h3>High Risk Jobs</h3>
+                    <p><strong>47% of jobs face 70%+ automation risk.</strong> Administrative, clerical, and routine roles are most vulnerable.</p>
+                    
+                    <div style="background: rgba(255,255,255,0.1); padding: 12px; border-radius: 8px; margin: 16px 0;">
+                        <strong>The Reality:</strong><br>
+                        • Current avg salary: $45K<br>
+                        • After reskilling: $75K (+67%)<br>
+                        • Timeline: 6-12 months
+                    </div>
+                    
+                    <h4 style="font-size: 16px; margin: 16px 0 8px;">Your Action Plan:</h4>
+                    <ul>
+                        <li>Learn Python + SQL (free resources available)</li>
+                        <li>Build portfolio projects on Kaggle</li>
+                        <li>Target: Data Analyst, BI Analyst roles</li>
+                        <li>Start now these jobs decline 8% annually</li>
+                    </ul>
+                </div>
+                
+                <div class="action-card opportunity">
+                    <div class="action-icon">🚀</div>
+                    <h3>Career Transitioners</h3>
+                    <p><strong>You have transferable skills.</strong> AI roles offer 64% salary premium with achievable entry barriers.</p>
+                    
+                    <div style="background: rgba(255,255,255,0.1); padding: 12px; border-radius: 8px; margin: 16px 0;">
+                        <strong>The Opportunity:</strong><br>
+                        • AI jobs: +35% annual growth<br>
+                        • 70% offer remote work<br>
+                        • Avg salary: $115K<br>
+                        • Automation risk: Only 15%
+                    </div>
+                    
+                    <h4 style="font-size: 16px; margin: 16px 0 8px;">Proven Paths:</h4>
+                    <ul>
+                        <li><strong>Marketing → Data Analyst</strong> (6-9 months)</li>
+                        <li><strong>Finance → ML Engineer</strong> (12-18 months)</li>
+                        <li><strong>Customer Service → AI Support</strong> (3-6 months)</li>
+                    </ul>
+                    
+                    <div style="margin-top: 16px; padding: 12px; background: rgba(245,158,11,0.2); border-radius: 8px; border-left: 3px solid #f59e0b;">
+                        <strong>💡 Key:</strong> Domain expertise + technical skills = high value
+                    </div>
+                </div>
+                
+                <div class="action-card safe">
+                    <div class="action-icon">✅</div>
+                    <h3>Already In AI</h3>
+                    <p><strong>You're in the safest position.</strong> But AI evolves fast continuous learning is essential.</p>
+                    
+                    <div style="background: rgba(255,255,255,0.1); padding: 12px; border-radius: 8px; margin: 16px 0;">
+                        <strong>Your Position:</strong><br>
+                        • Automation risk: 12%<br>
+                        • Salary: $95K-$180K<br>
+                        • Growth: +35% through 2030
+                    </div>
+                    
+                    <h4 style="font-size: 16px; margin: 16px 0 8px;">Stay Ahead:</h4>
+                    <ul>
+                        <li>Master: LLMs, transformers, diffusion models</li>
+                        <li>Cloud: AWS/Azure/GCP certifications</li>
+                        <li>Specialize: NLP, computer vision, or MLOps</li>
+                        <li>Develop: Leadership & communication skills</li>
+                    </ul>
+                    
+                    <div style="margin-top: 16px; padding: 12px; background: rgba(16,185,129,0.2); border-radius: 8px; border-left: 3px solid #10b981;">
+                        <strong>🚀 Next Level:</strong> Senior roles ($150K+) need business acumen + technical depth
+                    </div>
+                </div>
+            </div>
+            
+            <div style="max-width: 800px; margin: 60px auto 40px; padding: 40px; background: rgba(255,255,255,0.05); border-radius: 20px; border: 2px solid rgba(255,255,255,0.1);">
+                <h3 style="font-size: 28px; margin-bottom: 30px; text-align: center;">💡 The Bottom Line</h3>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 30px;">
+                    <div style="text-align: center; padding: 20px; background: rgba(99,102,241,0.2); border-radius: 12px;">
+                        <div style="font-size: 32px; font-weight: 800; margin-bottom: 4px;">2.3M</div>
+                        <div style="font-size: 12px; opacity: 0.9;">Jobs Analyzed</div>
+                    </div>
+                    <div style="text-align: center; padding: 20px; background: rgba(239,68,68,0.2); border-radius: 12px;">
+                        <div style="font-size: 32px; font-weight: 800; margin-bottom: 4px;">47%</div>
+                        <div style="font-size: 12px; opacity: 0.9;">At High Risk</div>
+                    </div>
+                    <div style="text-align: center; padding: 20px; background: rgba(16,185,129,0.2); border-radius: 12px;">
+                        <div style="font-size: 32px; font-weight: 800; margin-bottom: 4px;">+127%</div>
+                        <div style="font-size: 12px; opacity: 0.9;">Python Growth</div>
+                    </div>
+                    <div style="text-align: center; padding: 20px; background: rgba(245,158,11,0.2); border-radius: 12px;">
+                        <div style="font-size: 32px; font-weight: 800; margin-bottom: 4px;">$115K</div>
+                        <div style="font-size: 12px; opacity: 0.9;">AI Avg Salary</div>
+                    </div>
+                </div>
+                
+                <p style="font-size: 16px; line-height: 1.8; opacity: 0.95; text-align: center;">
+                    <strong>AI isn't replacing all jobs it's replacing workers who don't adapt.</strong><br>
+                    Transition is possible at any stage. Most successful pivots happen in 6-18 months.<br>
+                    The question isn't whether to adapt. It's when you'll start.
+                </p>
+            </div>
+            
+            <div class="final-cta">
+                <h3>One Last Thing</h3>
+                <p style="font-size: 16px; line-height: 1.7; margin-bottom: 30px;">
+                    I spent months on this analysis digging through 2.3 million job postings, mapping skill connections, tracking trends. 
+                    Not because I had to, but because I wanted to know the truth about what's happening to our jobs.
+                </p>
+                <p style="font-size: 16px; line-height: 1.7; margin-bottom: 30px;">
+                    The data doesn't lie. <strong>Change is coming.</strong> But it's not hopeless. You have time. You have options. 
+                    You just need to start.
+                </p>
+                <button class="cta-button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑ Go Back and Explore Again</button>
+                <p style="margin-top: 20px; font-size: 13px; opacity: 0.7;">Data sources: LinkedIn job postings (2023-2024), Oxford Martin School automation research, U.S. Bureau of Labor Statistics</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tooltip -->
+    <div id="tooltip" class="tooltip"></div>
+
+    <!-- Scripts -->
+    <script src="js/api-client.js"></script>
+    <script src="js/visualizations.js"></script>
+    <script src="js/annotations.js"></script>
+    <script src="js/scroll-narrative.js"></script>
+    <script src="js/main-scroll.js"></script>
+</body>
+</html>
