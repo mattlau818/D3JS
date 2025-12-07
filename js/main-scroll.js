@@ -83,8 +83,8 @@ async function loadAllData() {
         const traditionalSkills = await api.fetchTraditionalSkills();
         
         // NEW: Load storytelling data
-        const educationData = await fetch('http://localhost:5000/api/narrative/education-premium').then(r => r.json());
-        const companyData = await fetch('http://localhost:5000/api/narrative/company-size-impact').then(r => r.json());
+        const educationData = await fetch('https://d3jsbackend.duckdns.org/api/narrative/education-premium').then(r => r.json());
+        const companyData = await fetch('https://d3jsbackend.duckdns.org/api/narrative/company-size-impact').then(r => r.json());
 
         appData = { stats, globalShift, industryData, automationSpectrum, aiOpportunities, aiSkills, traditionalSkills, educationData, companyData };
         window.appData = appData;
