@@ -1,4 +1,5 @@
 // Main Scroll-Based Application
+const API_BASE_URL = 'https://d3jsbackend.duckdns.org/api';
 let viz, api, appData = {};
 let currentMapMetric = 'jobs';
 let interactionTracker = {
@@ -83,8 +84,8 @@ async function loadAllData() {
         const traditionalSkills = await api.fetchTraditionalSkills();
         
         // NEW: Load storytelling data
-        const educationData = await fetch('http://localhost:5000/api/narrative/education-premium').then(r => r.json());
-        const companyData = await fetch('http://localhost:5000/api/narrative/company-size-impact').then(r => r.json());
+        const educationData = await fetch(`${API_BASE_URL}/narrative/education-premium`).then(r => r.json());
+        const companyData = await fetch(`${API_BASE_URL}/narrative/company-size-impact`).then(r => r.json());
 
         appData = { stats, globalShift, industryData, automationSpectrum, aiOpportunities, aiSkills, traditionalSkills, educationData, companyData };
         window.appData = appData;
