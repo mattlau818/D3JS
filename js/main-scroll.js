@@ -1,5 +1,4 @@
 // Main Scroll-Based Application
-const API_BASE_URL = 'https://d3jsbackend.duckdns.org/api';
 let viz, api, appData = {};
 let currentMapMetric = 'jobs';
 let interactionTracker = {
