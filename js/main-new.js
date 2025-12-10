@@ -1,5 +1,5 @@
 // Main Application Logic
-const API_BASE = 'https://d3jsbackend.duckdns.org/api';
+const API_BASE = 'http://localhost:5000/api';
 let viz, api, appData = {};
 let selectedCountry = null;
 let selectedJob = null;

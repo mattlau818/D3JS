@@ -61,7 +61,7 @@
                 
                 <div style="max-width: 650px; margin: 40px auto; font-size: 17px; line-height: 1.8; opacity: 0.95;">
                     <p>Back in 2013, two Oxford researchers made a bold prediction: <strong style="color: #ef4444;">nearly half of all jobs would be automated within 20 years.</strong> Everyone panicked. Then... nothing seemed to happen.</p>
-                    <p style="margin-top: 20px;">But I wanted to know: <strong>were they actually right?</strong> So I spent months analyzing real job market data LinkedIn postings, salary trends, skill demands to see what's really happening.</p>
+                    <p style="margin-top: 20px;">But I wanted to know: <strong>were they actually right?</strong> So I spent weeks analyzing real job market data LinkedIn postings, salary trends, skill demands to see what's really happening.</p>
                     <p style="margin-top: 20px; padding: 16px; background: rgba(251,191,36,0.1); border-radius: 8px; border-left: 4px solid #f59e0b;">💡 <strong>What I found surprised me.</strong> And it might change how you think about your career.</p>
                 </div>
                 
@@ -150,6 +150,14 @@
 
     <!-- Scroll Section 3: Job-Skill Network -->
     <section class="scroll-section network-section" id="scroll-section-2">
+        <!-- Transition Bridge -->
+        <div style="max-width: 800px; margin: 0 auto 60px; padding: 30px; background: linear-gradient(135deg, rgba(99,102,241,0.1), rgba(139,92,246,0.1)); border-radius: 16px; border-left: 4px solid #6366f1; text-align: center;">
+            <p style="font-size: 18px; line-height: 1.7; color: #1e293b; font-weight: 500;">
+                💡 <strong>Now that you've seen where the jobs are and how much they pay...</strong><br>
+                Let's look at what those jobs actually require.
+            </p>
+        </div>
+        
         <!-- 10-Second Takeaway -->
         <div id="takeaway-10s" style="max-width: 800px; margin: 0 auto 40px; padding: 24px; background: linear-gradient(135deg, #fef3c7, #fde68a); border-radius: 16px; border-left: 6px solid #f59e0b; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: none;">
             <div style="font-size: 13px; font-weight: 700; color: #92400e; margin-bottom: 8px;">⏱️ 10-SECOND TAKEAWAY</div>
@@ -157,7 +165,7 @@
         </div>
         
         <div style="max-width: 900px; margin: 0 auto 60px; text-align: center; padding: 0 20px;">
-            <h2 style="font-size: 42px; font-weight: 800; margin-bottom: 20px; color: #1e293b;">Okay, but which skills do you actually need?</h2>
+            <h2 style="font-size: 42px; font-weight: 800; margin-bottom: 20px; color: #1e293b;">Which skills do you actually need?</h2>
             <p style="font-size: 18px; line-height: 1.7; color: #475569; max-width: 700px; margin: 0 auto;">
                 This is where it gets interesting. I mapped out <strong>15 high paying AI jobs</strong> and connected them to <strong>20 in demand skills</strong>. 
                 The pattern that emerged surprised me most jobs only need 3-5 core skills.
@@ -224,7 +232,7 @@
                 <div id="education-card" onclick="window.revealEducation()" onmouseenter="this.style.transform='scale(1.02)'; this.style.borderColor='rgba(251,191,36,0.5)';" onmouseleave="if(!window.revealTracker || !window.revealTracker.education) { this.style.transform='scale(1)'; this.style.borderColor='rgba(255,255,255,0.1)'; }" style="background: rgba(255,255,255,0.05); border: 2px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 40px; cursor: pointer; transition: all 0.3s; position: relative; overflow: hidden;">
                     <div style="position: absolute; top: 20px; right: 20px; font-size: 48px; opacity: 0.3;">📚</div>
                     <h3 style="font-size: 28px; font-weight: 700; margin-bottom: 16px; color: #fbbf24;">Factor #1: Education</h3>
-                    <p style="font-size: 16px; opacity: 0.8; line-height: 1.6; margin-bottom: 20px;">Is a PhD really worth the extra years? The data reveals a shocking truth...</p>
+                    <p style="font-size: 16px; opacity: 0.8; line-height: 1.6; margin-bottom: 20px;">Does more education always mean more money? The data might surprise you...</p>
                     <div style="display: inline-block; padding: 10px 20px; background: rgba(251,191,36,0.2); border-radius: 8px; font-size: 14px; font-weight: 600; color: #fbbf24;">👆 CLICK TO REVEAL</div>
                     <div id="education-viz" style="display: none; margin-top: 30px;"></div>
                 </div>
@@ -242,15 +250,23 @@
             <!-- Comparison Insight Box (appears after both clicks) -->
             <div id="comparison-insight" style="display: none; padding: 40px; background: linear-gradient(135deg, rgba(251,191,36,0.1), rgba(139,92,246,0.1)); border-radius: 20px; border: 2px solid rgba(255,255,255,0.2); text-align: center;">
                 <div style="font-size: 18px; font-weight: 700; color: #10b981; margin-bottom: 12px;">✅ BOTH FACTORS REVEALED</div>
-                <h4 style="font-size: 24px; font-weight: 800; margin-bottom: 16px;">The Winning Combination</h4>
-                <p style="font-size: 18px; line-height: 1.7; opacity: 0.95;">PhD + Large Company = <span style="color: #10b981; font-weight: 700;">$180K average</span><br>But Master's + Startup = <span style="color: #fbbf24; font-weight: 700;">100% remote + equity</span></p>
-                <p style="font-size: 14px; margin-top: 20px; opacity: 0.7;">💡 The best choice depends on what you value: money or flexibility?</p>
+                <h4 style="font-size: 24px; font-weight: 800; margin-bottom: 16px;">The Surprising Truth</h4>
+                <p style="font-size: 18px; line-height: 1.7; opacity: 0.95;">Education level matters, but <strong>company size and role type</strong> often matter more.<br>A Master's at a large company can earn <span style="color: #10b981; font-weight: 700;">more than a PhD at a startup</span>.</p>
+                <p style="font-size: 14px; margin-top: 20px; opacity: 0.7;">💡 The best choice depends on what you value: maximum salary, flexibility, or growth potential?</p>
             </div>
         </div>
     </section>
     
     <!-- Scroll Section 4: Skill Timeline -->
     <section class="scroll-section timeline-section" id="scroll-section-3">
+        <!-- Transition Bridge -->
+        <div style="max-width: 800px; margin: 0 auto 60px; padding: 30px; background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(5,150,105,0.1)); border-radius: 16px; border-left: 4px solid #10b981; text-align: center;">
+            <p style="font-size: 18px; line-height: 1.7; color: #1e293b; font-weight: 500;">
+                💡 <strong>So you know which skills these jobs need...</strong><br>
+                But which of these skills are actually growing, and which are stagnant?
+            </p>
+        </div>
+        
         <!-- 30-Second Takeaway -->
         <div id="takeaway-30s" style="max-width: 800px; margin: 0 auto 40px; padding: 24px; background: linear-gradient(135deg, #dbeafe, #bfdbfe); border-radius: 16px; border-left: 6px solid #3b82f6; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: none;">
             <div style="font-size: 13px; font-weight: 700; color: #1e40af; margin-bottom: 8px;">⏱️ 30-SECOND TAKEAWAY</div>
@@ -258,7 +274,7 @@
         </div>
         
         <div style="max-width: 900px; margin: 0 auto 60px; text-align: center; padding: 0 20px;">
-            <h2 style="font-size: 42px; font-weight: 800; margin-bottom: 20px; color: #1e293b;">But here's the thing: skills change fast</h2>
+            <h2 style="font-size: 42px; font-weight: 800; margin-bottom: 20px; color: #1e293b;">Here's the thing: skills change fast</h2>
             <p style="font-size: 18px; line-height: 1.7; color: #475569; max-width: 700px; margin: 0 auto; margin-bottom: 20px;">
                 I tracked <strong>8 critical skills from 2020 to 2024</strong> to see which ones are actually growing. 
                 Some skills exploded. Others plateaued. <strong>This tells you where to invest your time.</strong>
@@ -317,6 +333,14 @@
     <!-- NEW: Automation Risk Comparison Section -->
     <section class="scroll-section" id="scroll-section-3-5" style="background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%); padding: 100px 0;">
         <div style="max-width: 1200px; margin: 0 auto; padding: 0 40px;">
+            <!-- Transition Bridge -->
+            <div style="max-width: 800px; margin: 0 auto 60px; padding: 30px; background: rgba(251,191,36,0.15); border-radius: 16px; border-left: 4px solid #f59e0b; text-align: center;">
+                <p style="font-size: 18px; line-height: 1.7; color: white; font-weight: 500;">
+                    💡 <strong>You've seen the skills that are growing...</strong><br>
+                    Now let's see which jobs are actually at risk of being automated.
+                </p>
+            </div>
+            
             <div style="text-align: center; margin-bottom: 60px;">
                 <h2 style="font-size: 48px; font-weight: 800; margin-bottom: 20px; color: white;">The Automation Divide</h2>
                 <p style="font-size: 20px; color: rgba(255,255,255,0.9); max-width: 700px; margin: 0 auto 30px;">Not all jobs face the same risk. Click to compare high-risk vs low-risk roles.</p>
@@ -412,6 +436,14 @@
     <!-- Scroll Section 5: Conclusion & Action -->
     <section class="scroll-section conclusion-section" id="scroll-section-4">
         <div class="conclusion-content">
+            <!-- Transition Bridge -->
+            <div style="max-width: 800px; margin: 0 auto 40px; padding: 30px; background: linear-gradient(135deg, rgba(239,68,68,0.1), rgba(16,185,129,0.1)); border-radius: 16px; border-left: 4px solid #6366f1; text-align: center;">
+                <p style="font-size: 18px; line-height: 1.7; color: #1e293b; font-weight: 500;">
+                    💡 <strong>You've seen the risk. You've seen the opportunity.</strong><br>
+                    Now here's your roadmap forward.
+                </p>
+            </div>
+            
             <!-- Narrative Bridge -->
             <div style="max-width: 800px; margin: 0 auto 80px; text-align: center;">
                 <h2 style="font-size: 48px; font-weight: 800; margin-bottom: 24px;">So... what should YOU do?</h2>
@@ -561,7 +593,14 @@
                     You just need to start.
                 </p>
                 <button class="cta-button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑ Go Back and Explore Again</button>
-                <p style="margin-top: 20px; font-size: 13px; opacity: 0.7;">Data sources: LinkedIn job postings (2023-2024), Oxford Martin School automation research, U.S. Bureau of Labor Statistics</p>
+                
+                <!-- Data Sources Section -->
+                <div id="data-sources" style="margin-top: 40px; padding: 30px; background: rgba(255,255,255,0.05); border-radius: 12px; border: 2px solid rgba(255,255,255,0.1);">
+                    <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 20px; text-align: center;">📊 Data Sources</h4>
+                    <div id="sources-list" style="font-size: 14px; line-height: 1.8; opacity: 0.9;">
+                        <p style="text-align: center; opacity: 0.6;">Loading dataset information...</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -575,5 +614,28 @@
     <script src="js/annotations.js"></script>
     <script src="js/scroll-narrative.js"></script>
     <script src="js/main-scroll.js"></script>
+    <script>
+        // Load and display data sources
+        (async function() {
+            try {
+                const apiClient = new APIClient();
+                const metadata = await apiClient.fetchMetadata();
+                const sourcesList = document.getElementById('sources-list');
+                
+                sourcesList.innerHTML = metadata.datasets.map(dataset => `
+                    <div style="margin-bottom: 16px; padding: 16px; background: rgba(255,255,255,0.03); border-radius: 8px; border-left: 3px solid rgba(99,102,241,0.5);">
+                        <div style="font-weight: 600; margin-bottom: 4px;">${dataset.name}</div>
+                        <div style="font-size: 13px; opacity: 0.8; margin-bottom: 8px;">${dataset.description}</div>
+                        <a href="${dataset.kaggle_link}" target="_blank" style="font-size: 12px; color: #6366f1; text-decoration: none;">
+                            🔗 View on Kaggle →
+                        </a>
+                        <span style="font-size: 12px; opacity: 0.6; margin-left: 12px;">Year: ${dataset.year_range}</span>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Failed to load metadata:', error);
+            }
+        })();
+    </script>
 </body>
 </html>

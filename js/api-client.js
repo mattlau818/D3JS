@@ -40,4 +40,9 @@ class APIClient {
         const response = await fetch(`${API_BASE_URL}/narrative/stage3/skill-salary-premium`);
         return await response.json();
     }
+
+    async fetchMetadata() {
+        const response = await fetch(`${API_BASE_URL}/metadata`);
+        return await response.json();
+    }
 }
